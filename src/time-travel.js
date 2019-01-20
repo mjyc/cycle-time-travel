@@ -1,4 +1,3 @@
-import xs from 'xstream';
 import intent from './intent';
 import makeTime$ from './time';
 import record from './record-streams';

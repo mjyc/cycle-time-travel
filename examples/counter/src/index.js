@@ -2,7 +2,7 @@ import xs from 'xstream';
 import {run} from '@cycle/run';
 import {h, makeDOMDriver} from '@cycle/dom';
 import {timeDriver} from '@cycle/time';
-import logStreams from '../../../src/time-travel';
+import logStreams from '@mjyc/cycle-time-travel';
 
 function view (count$) {
   return count$
