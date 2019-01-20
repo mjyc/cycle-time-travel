@@ -1,4 +1,4 @@
-const {Rx} = require('@cycle/core');
+import xs from 'xstream';
 
 function calculateTimestamp (mouseX) {
   return mouseX / document.documentElement.clientWidth * 10000;
@@ -19,23 +19,20 @@ function calculateTimeTravelPosition (previousState, newState) {
   };
 }
 
-function makeTimeTravelPosition$ (mousePosition$, dragging$) {
+export default function makeTimeTravelPosition$ (mousePosition$, dragging$) {
   const initialState = {
     timeTravelPosition: 0,
     mousePosition: 0,
     dragging: false
   };
 
-  const currentPositionAndDragState$ = Rx.Observable.combineLatest(
+  const currentPositionAndDragState$ = xs.combine(
     mousePosition$,
     dragging$,
-    (mousePosition, dragging) => ({ mousePosition, dragging })
-  );
+  ).map((mousePosition, dragging) => ({ mousePosition, dragging }));
 
   return currentPositionAndDragState$
-    .scan(calculateTimeTravelPosition, initialState)
+    .fold(calculateTimeTravelPosition, initialState)
     .map(state => state.timeTravelPosition)
     .startWith(0);
 }
-
-module.exports = makeTimeTravelPosition$;

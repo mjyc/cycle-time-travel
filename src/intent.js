@@ -1,5 +1,6 @@
-const {Rx} = require('@cycle/core');
-const makeTimeTravelPosition$ = require('./calculate-time-travel-position');
+import xs from 'xstream';
+import fromEvent from 'xstream/extra/fromEvent';
+import makeTimeTravelPosition$ from './calculate-time-travel-position';
 
 function getMousePosition (ev) {
   return {
@@ -8,15 +9,15 @@ function getMousePosition (ev) {
   };
 }
 
-function intent (DOM) {
+export default function intent (DOM) {
   const mousePosition$ = DOM.select('.stream').events('mousemove')
     .map(getMousePosition)
     .startWith({x: 0, y: 0});
 
   const click$ = DOM.select('.stream').events('mousedown');
-  const release$ = Rx.Observable.fromEvent(document.body, 'mouseup');
+  const release$ = fromEvent(document.body, 'mouseup');
 
-  const dragging$ = Rx.Observable.merge(
+  const dragging$ = xs.merge(
     click$.map(_ => true),
     release$.map(_ => false)
   ).startWith(false);
@@ -25,16 +26,16 @@ function intent (DOM) {
     .scan((previous, _) => !previous, true)
     .startWith(true);
 
-  const playing$ = Rx.Observable.combineLatest(
+  const playing$ = xs.combineLatest(
     dragging$,
     playingClick$,
-    (dragging, playingClick) => {
-      if (dragging) {
-        return false;
-      }
+  ).map((dragging, playingClick) => {
+    if (dragging) {
+      return false;
+    }
 
-      return playingClick;
-    });
+    return playingClick;
+  });
 
   const timeTravelPosition$ = makeTimeTravelPosition$(mousePosition$, dragging$);
 
@@ -43,5 +44,3 @@ function intent (DOM) {
     playing$
   };
 }
-
-module.exports = intent;

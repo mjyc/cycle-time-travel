@@ -3,6 +3,10 @@ import {div, label, input, hr, h1, makeDOMDriver} from '@cycle/dom';
 //------------------------------------------------------------------------------
 import recordStreams from '../../../src/record-streams';
 console.log(recordStreams);
+import makeTimeTravelPosition$ from '../../../src/calculate-time-travel-position';
+console.log(makeTimeTravelPosition$);
+import intent from '../../../src/intent';
+console.log(intent);
 //------------------------------------------------------------------------------
 
 function main(sources) {
