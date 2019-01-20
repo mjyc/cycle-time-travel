@@ -9,6 +9,7 @@ See [the original repository](https://github.com/cyclejs/cycle-time-travel) for 
 
 Run
 ```
+npm run build
 cd examples/counter
 npm install
 npm run start
