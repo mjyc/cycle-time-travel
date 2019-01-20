@@ -3,7 +3,7 @@ import sampleCombine from 'xstream/extra/sampleCombine';
 
 export default function makeTime$ (Time, playing$, timeTravelPosition$) {
   const time$ = Time.animationFrames().map(frame => frame.time);
-  return xs.combine(time$, playing$)
+  return xs.combine(time$, xs.of(true))//playing$)
     .fold((oldTime, [actualTime, playing]) => {
       if (playing) {
         const deltaTime = oldTime.actualTime === null

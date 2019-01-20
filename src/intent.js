@@ -18,8 +18,8 @@ export default function intent (DOM) {
   const release$ = fromEvent(document.body, 'mouseup');
 
   const dragging$ = xs.merge(
-    click$.map(_ => true),
-    release$.map(_ => false)
+    click$.mapTo(true),
+    release$.mapTo(false)
   ).startWith(false);
 
   const playingClick$ = DOM.select('.pause').events('click')

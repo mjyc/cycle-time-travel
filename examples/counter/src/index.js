@@ -7,7 +7,7 @@ import logStreams from '../../../src/time-travel';
 function view (count$) {
   return count$
     .map((count) => (
-      h('.widget', [
+      h('div.widget', [
         h('span.count', `Count: ${count}`),
         h('button.increment', 'Increment'),
         h('button.decrement', 'Decrement')
@@ -18,12 +18,11 @@ function view (count$) {
 
 function model ({increment$, decrement$}) {
   const action$ = xs.merge(
-    increment$.map(_ => +1),
-    decrement$.map(_ => -1)
+    increment$.mapTo(1),
+    decrement$.mapTo(-1)
   );
 
-  const count$ = action$.fold((count, value) => count + value)
-    .startWith(0);
+  const count$ = action$.fold((count, value) => count + value, 0);
 
   return {count$, action$};
 }
@@ -49,7 +48,7 @@ function main({DOM, Time}) {
   return {
     DOM: xs.combine(app, logStream.DOM)
       .map(vtrees => (
-        h('.app', vtrees)
+        h('div', vtrees)
       )
     )
   };

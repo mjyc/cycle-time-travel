@@ -1,3 +1,4 @@
+import xs from 'xstream';
 import intent from './intent';
 import makeTime$ from './time';
 import record from './record-streams';
@@ -9,6 +10,14 @@ export default function TimeTravel (DOM, Time, streams, name = '.time-travel') {
   const {timeTravelPosition$, playing$} = intent(scopedDOM(DOM, name));
 
   const time$ = makeTime$(Time, playing$, timeTravelPosition$);
+
+  // playing$.addListener({
+  //   next: v => console.log(v),
+  //   error: e => console.error(e),
+  //   complete: () => console.log('completed'),
+  // })
+  // const test$ = xs.create();
+  // test$.imitate(playing$);
 
   const recordedStreams = record(streams, time$);
 

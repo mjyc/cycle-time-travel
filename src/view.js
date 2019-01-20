@@ -7,7 +7,7 @@ import stylesheet from './style';
 export default function timeTravelBarView (name, time$, playing$, recordedStreams) {
   return xs.combine(time$, playing$, ...recordedStreams)
     .map(([currentTime, playing, ...streamValues]) => {
-      return h(name, [
+      return h(`div${name}`, [
         stylesheet(),
         h('button.pause', playing ? 'Pause' : 'Play'),
         renderStreams(currentTime, ...streamValues)

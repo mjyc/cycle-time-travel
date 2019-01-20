@@ -10,7 +10,7 @@ function renderFeatureValue (value) {
   if (!value) { return; }
 
   return value.map(val => (
-    h('.subvalue', renderValue(val))
+    h('div.subvalue', renderValue(val))
   ));
 }
 
@@ -43,16 +43,16 @@ function renderStream (currentTime, streamValues, even) {
   }
 
   return (
-    h(`.stream ${feature}`, [
-      h('.stream-title', streamValues.label),
+    h(`div.stream${feature}`, [
+      h('div.stream-title', streamValues.label),
       ...streamValues.map(renderStreamValue.bind(null, currentTime, !!feature)),
-      h('.stream-marker')
+      h('div.stream-marker')
     ])
   );
 }
 
 export default function renderStreams (currentTime, ...streamValues) {
-  return h('.streams', streamValues.map((streamValueSet, index) =>
+  return h('div.streams', streamValues.map((streamValueSet, index) =>
     renderStream(currentTime, streamValueSet, index % 2 == 0)
   ));
 }
