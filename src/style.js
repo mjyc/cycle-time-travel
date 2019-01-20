@@ -1,6 +1,6 @@
-const {h} = require('@cycle/dom');
+import {h} from '@cycle/dom';
 
-function stylesheet () {
+export default function stylesheet () {
   return (
     h('style', `
     .time-travel {
@@ -77,5 +77,3 @@ function stylesheet () {
   `)
   );
 }
-
-module.exports = stylesheet;

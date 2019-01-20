@@ -1,4 +1,4 @@
-const {h} = require('@cycle/dom');
+import {h} from '@cycle/dom';
 
 function calculateValuePosition (startPercentage, currentTime, streamValue) {
   const occurrenceTimeAgoInMs = currentTime - streamValue.timestamp;
@@ -51,10 +51,8 @@ function renderStream (currentTime, streamValues, even) {
   );
 }
 
-function renderStreams (currentTime, ...streamValues) {
+export default function renderStreams (currentTime, ...streamValues) {
   return h('.streams', streamValues.map((streamValueSet, index) =>
     renderStream(currentTime, streamValueSet, index % 2 == 0)
   ));
 }
-
-module.exports = renderStreams;

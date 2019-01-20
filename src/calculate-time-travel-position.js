@@ -29,7 +29,7 @@ export default function makeTimeTravelPosition$ (mousePosition$, dragging$) {
   const currentPositionAndDragState$ = xs.combine(
     mousePosition$,
     dragging$,
-  ).map((mousePosition, dragging) => ({ mousePosition, dragging }));
+  ).map(([mousePosition, dragging]) => ({ mousePosition, dragging }));
 
   return currentPositionAndDragState$
     .fold(calculateTimeTravelPosition, initialState)

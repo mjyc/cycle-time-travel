@@ -1,12 +1,12 @@
-const {Rx} = require('@cycle/core');
-const {h} = require('@cycle/dom');
+import xs from 'xstream';
+import {h} from '@cycle/dom';
 
-const renderStreams = require('./render-streams');
-const stylesheet = require('./style');
+import renderStreams from './render-streams';
+import stylesheet from './style';
 
-function timeTravelBarView (name, time$, playing$, recordedStreams) {
-  return Rx.Observable.combineLatest(time$, playing$, ...recordedStreams,
-    (currentTime, playing, ...streamValues) => {
+export default function timeTravelBarView (name, time$, playing$, recordedStreams) {
+  return xs.combine(time$, playing$, ...recordedStreams,
+    ([currentTime, playing, ...streamValues]) => {
       return h(name, [
         stylesheet(),
         h('button.pause', playing ? 'Pause' : 'Play'),
@@ -15,6 +15,3 @@ function timeTravelBarView (name, time$, playing$, recordedStreams) {
     }
   );
 }
-
-module.exports = timeTravelBarView;
-

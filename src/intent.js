@@ -26,10 +26,10 @@ export default function intent (DOM) {
     .scan((previous, _) => !previous, true)
     .startWith(true);
 
-  const playing$ = xs.combineLatest(
+  const playing$ = xs.combine(
     dragging$,
     playingClick$,
-  ).map((dragging, playingClick) => {
+  ).map(([dragging, playingClick]) => {
     if (dragging) {
       return false;
     }

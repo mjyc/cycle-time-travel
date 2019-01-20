@@ -1,16 +1,14 @@
-require('es6-shim');
+import intent from './intent';
+import makeTime from './time';
+import record from './record-streams';
+import timeTravelStreams from './time-travel-streams';
+import timeTravelBarView from './view';
+import scopedDOM from './scoped-dom';
 
-const intent = require('./intent');
-const makeTime$ = require('./time');
-const record = require('./record-streams');
-const timeTravelStreams = require('./time-travel-streams');
-const timeTravelBarView = require('./view');
-const scopedDOM = require('./scoped-dom');
-
-function TimeTravel (DOM, streams, name = '.time-travel') {
+export default function TimeTravel (DOM, Time, streams, name = '.time-travel') {
   const {timeTravelPosition$, playing$} = intent(scopedDOM(DOM, name));
 
-  const time$ = makeTime$(playing$, timeTravelPosition$);
+  const time$ = makeTime$(Time, playing$, timeTravelPosition$);
 
   const recordedStreams = record(streams, time$);
 
@@ -21,5 +19,3 @@ function TimeTravel (DOM, streams, name = '.time-travel') {
     timeTravel
   };
 }
-
-module.exports = TimeTravel;

@@ -1,22 +1,19 @@
-const {Rx} = require('@cycle/core');
+import xs from 'xstream';
+import dropRepeats from 'xstream/extra/dropRepeats';
 
-function timeTravelStreams (streams, time$) {
+export default function timeTravelStreams (streams, time$) {
   const timeTravel = {};
 
   streams.forEach((recordedStream, index) => {
-    timeTravel[streams[index].label] = Rx.Observable.combineLatest(
-        time$,
-        recordedStream,
-        (time, events) => (events.slice(0)
-          .reverse().find(val => val.timestamp <= time) ||
-          events[0])
-      )
-      .filter(thing => thing !== undefined && thing.value !== undefined)
+    timeTravel[streams[index].label] = xs.combine(
+      time$,
+      recordedStream
+    ).map(([time, events]) => (
+      events.slice(0).reverse().find(val => val.timestamp <= time) || events[0]
+    )).filter(thing => thing !== undefined && thing.value !== undefined)
       .map(v => v.value)
-      .distinctUntilChanged();
+      .compose(dropRepeats());
   });
 
   return timeTravel;
 }
-
-module.exports = timeTravelStreams;
