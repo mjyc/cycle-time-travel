@@ -11,7 +11,6 @@
     "compile-lib": "babel --optional es7.objectRestSpread src -d lib",
     "browserify": "browserify src/time-travel.js --standalone TimeTravel -t babelify --outfile dist/time-travel.js",
     "test-browser": "./node_modules/mochify/bin/cmd.js --transform babelify",
-    "prepublish": "npm run compile-lib",
     "test": "npm run test-browser"
   },
   "repository": {
