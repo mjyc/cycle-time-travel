@@ -35,7 +35,7 @@ export default function intent (DOM) {
     }
 
     return playingClick;
-  });
+  }).remember();
 
   const timeTravelPosition$ = makeTimeTravelPosition$(mousePosition$, dragging$);
 

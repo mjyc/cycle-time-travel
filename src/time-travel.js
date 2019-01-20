@@ -11,14 +11,6 @@ export default function TimeTravel (DOM, Time, streams, name = '.time-travel') {
 
   const time$ = makeTime$(Time, playing$, timeTravelPosition$);
 
-  // playing$.addListener({
-  //   next: v => console.log(v),
-  //   error: e => console.error(e),
-  //   complete: () => console.log('completed'),
-  // })
-  // const test$ = xs.create();
-  // test$.imitate(playing$);
-
   const recordedStreams = record(streams, time$);
 
   const timeTravel = timeTravelStreams(recordedStreams, time$);
