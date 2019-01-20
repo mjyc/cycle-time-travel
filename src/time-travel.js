@@ -1,5 +1,5 @@
 import intent from './intent';
-import makeTime from './time';
+import makeTime$ from './time';
 import record from './record-streams';
 import timeTravelStreams from './time-travel-streams';
 import timeTravelBarView from './view';

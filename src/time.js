@@ -3,8 +3,8 @@ import sampleCombine from 'xstream/extra/sampleCombine';
 
 export default function makeTime$ (Time, playing$, timeTravelPosition$) {
   const time$ = Time.animationFrames().map(frame => frame.time);
-  xs.combine(time$, playing$)
-    .scan((oldTime, [actualTime, playing]) => {
+  return xs.combine(time$, playing$)
+    .fold((oldTime, [actualTime, playing]) => {
       if (playing) {
         const deltaTime = oldTime.actualTime === null
           ? 0 : actualTime - oldTime.actualTime;
@@ -18,5 +18,3 @@ export default function makeTime$ (Time, playing$, timeTravelPosition$) {
     .map(([time, timeTravel]) => time - timeTravel)
     .startWith(0);
 }
-
-module.exports = makeTime$;
