@@ -1,5 +1,9 @@
 import {run} from '@cycle/run';
 import {div, label, input, hr, h1, makeDOMDriver} from '@cycle/dom';
+//------------------------------------------------------------------------------
+import recordStreams from '../../../src/record-streams';
+console.log(recordStreams);
+//------------------------------------------------------------------------------
 
 function main(sources) {
   const vdom$ = sources.DOM
@@ -14,7 +18,6 @@ function main(sources) {
         h1(`Hello ${name}`)
       ])
     );
-
   return {
     DOM: vdom$,
   };
