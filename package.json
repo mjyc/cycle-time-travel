@@ -2,14 +2,14 @@
   "name": "@mjyc/cycle-time-travel",
   "version": "0.0.1",
   "description": "A time travelling debugger for Cycle.js",
-  "main": "lib/time-travel.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
     "prebuild": "rimraf lib && mkdirp lib",
     "build": "babel src -d lib",
-    "browserify": "mkdirp dist && browserify src/time-travel.js --standalone TimeTravel -t babelify --outfile dist/time-travel.js"
+    "browserify": "mkdirp dist && browserify src/index.js --standalone default -t babelify --outfile dist/index.js"
   },
   "repository": {
     "type": "git",

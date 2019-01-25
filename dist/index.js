@@ -1,4 +1,4 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.TimeTravel = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.default = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var xstream_1 = require("xstream");
@@ -5571,6 +5571,78 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _intent = require('./intent');
+
+Object.defineProperty(exports, 'intent', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_intent).default;
+  }
+});
+
+var _time = require('./time');
+
+Object.defineProperty(exports, 'makeTime$', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_time).default;
+  }
+});
+
+var _recordStreams = require('./record-streams');
+
+Object.defineProperty(exports, 'recordStreams', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_recordStreams).default;
+  }
+});
+
+var _timeTravelStreams = require('./time-travel-streams');
+
+Object.defineProperty(exports, 'timeTravelStreams', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_timeTravelStreams).default;
+  }
+});
+
+var _timeTravel = require('./time-travel');
+
+Object.defineProperty(exports, 'default', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_timeTravel).default;
+  }
+});
+
+var _view = require('./view');
+
+Object.defineProperty(exports, 'timeTravelBarView', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_view).default;
+  }
+});
+
+var _scopedDom = require('./scoped-dom');
+
+Object.defineProperty(exports, 'scopedDOM', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_scopedDom).default;
+  }
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+},{"./intent":54,"./record-streams":55,"./scoped-dom":57,"./time":61,"./time-travel":60,"./time-travel-streams":59,"./view":62}],54:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 exports.default = intent;
@@ -5628,7 +5700,7 @@ function intent(DOM) {
   };
 }
 
-},{"./calculate-time-travel-position":52,"xstream":51,"xstream/extra/fromEvent":49}],54:[function(require,module,exports){
+},{"./calculate-time-travel-position":52,"xstream":51,"xstream/extra/fromEvent":49}],55:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5674,7 +5746,7 @@ function recordStreams(streams, time$) {
   });
 }
 
-},{"xstream/extra/sampleCombine":50}],55:[function(require,module,exports){
+},{"xstream/extra/sampleCombine":50}],56:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5738,7 +5810,7 @@ function renderStreams(currentTime) {
   }));
 }
 
-},{"@cycle/dom":14}],56:[function(require,module,exports){
+},{"@cycle/dom":14}],57:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5753,7 +5825,7 @@ function scopedDOM(DOM, scope) {
   };
 }
 
-},{}],57:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5767,7 +5839,7 @@ function stylesheet() {
   return (0, _dom.h)('style', '\n    .time-travel {\n      position: fixed;\n      bottom: 0;\n      background: lightgray;\n      width: 100%;\n      -moz-user-select: none;\n      -webkit-user-select: none;\n    }\n\n    .stream-value {\n      position: absolute;\n      border-radius: 30px;\n      background: #FAFAFA;\n      color: black;\n      padding: 2px 8px;\n      text-align: center;\n      margin: 6px;\n      white-space: nowrap;\n      border: 1px solid lightgray;\n      box-shadow: 0px 1px 1px gray;\n    }\n\n    .stream {\n      height: 45px;\n      font-size: 1.7em;\n      font-family: Helvetica;\n      border-top: #CFCFCF 1px solid;\n    }\n\n    .stream.feature {\n      height: 90px;\n    }\n\n    .stream.feature .stream-value {\n      height: 64px;\n      font-size: 0.5em;\n      padding: 8px;\n      white-space: pre;\n      text-align: left;\n    }\n\n    .stream-title {\n      margin: 5px;\n      color: #757575;\n      position: fixed;\n    }\n\n    .stream-marker {\n      position: fixed;\n      height: 100%;\n      border-left: 1px solid red;\n      border-right: 1px solid darkred;\n      width: 0px;\n      left: 72%;\n    }\n\n    .stream:nth-child(even) {\n      background: #D9D9D9;\n    }\n\n    .stream:nth-child(odd) {\n      background: #C2C2C2;\n    }\n\n    .widget {\n      display: inline-block;\n    }\n\n    .count {\n      margin: 10px;\n    }\n  ');
 }
 
-},{"@cycle/dom":14}],58:[function(require,module,exports){
+},{"@cycle/dom":14}],59:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5799,7 +5871,7 @@ function timeTravelStreams(streams, time$) {
 
       return events.slice(0).reverse().find(function (val) {
         return val.timestamp <= time;
-      }) || events[0];
+      }) || undefined;
     }).filter(function (thing) {
       return thing !== undefined && thing.value !== undefined;
     }).map(function (v) {
@@ -5810,7 +5882,7 @@ function timeTravelStreams(streams, time$) {
   return timeTravel;
 }
 
-},{"xstream":51,"xstream/extra/dropRepeats":48}],59:[function(require,module,exports){
+},{"xstream":51,"xstream/extra/dropRepeats":48}],60:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5863,7 +5935,7 @@ function TimeTravel(DOM, Time, streams) {
   };
 }
 
-},{"./intent":53,"./record-streams":54,"./scoped-dom":56,"./time":60,"./time-travel-streams":58,"./view":61}],60:[function(require,module,exports){
+},{"./intent":54,"./record-streams":55,"./scoped-dom":57,"./time":61,"./time-travel-streams":59,"./view":62}],61:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5910,7 +5982,7 @@ function makeTime$(Time, playing$, timeTravelPosition$) {
   }).startWith(0);
 }
 
-},{"xstream":51,"xstream/extra/sampleCombine":50}],61:[function(require,module,exports){
+},{"xstream":51,"xstream/extra/sampleCombine":50}],62:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -5949,5 +6021,5 @@ function timeTravelBarView(name, time$, playing$, recordedStreams) {
   });
 }
 
-},{"./render-streams":55,"./style":57,"@cycle/dom":14,"xstream":51}]},{},[59])(59)
+},{"./render-streams":56,"./style":58,"@cycle/dom":14,"xstream":51}]},{},[53])(53)
 });
