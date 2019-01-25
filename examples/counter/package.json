@@ -1,8 +1,6 @@
 {
   "name": "example",
   "version": "0.0.0",
-  "description": "",
-  "repository": "",
   "author": "Michael Jae-Yoon Chung",
   "dependencies": {
     "@cycle/dom": "22.3.0",
