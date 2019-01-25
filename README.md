@@ -4,6 +4,8 @@ This repo contains the updated [cycle-time-travel](https://github.com/cyclejs/cy
 The major change is switching from [RxJS](https://rxjs-dev.firebaseapp.com) to [xstream](http://staltz.github.io/xstream/).
 See [the original repository](https://github.com/cyclejs/cycle-time-travel) for more information.
 
+[Demo](https://codesandbox.io/s/24olxr7k50)
+
 
 ## Example
 
