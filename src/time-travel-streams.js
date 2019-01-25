@@ -9,7 +9,7 @@ export default function timeTravelStreams (streams, time$) {
       time$,
       recordedStream
     ).map(([time, events]) => (
-      events.slice(0).reverse().find(val => val.timestamp <= time) || events[0]
+      events.slice(0).reverse().find(val => val.timestamp <= time) || undefined
     )).filter(thing => thing !== undefined && thing.value !== undefined)
       .map(v => v.value)
       .compose(dropRepeats());
