@@ -1,6 +1,10 @@
 import sampleCombine from 'xstream/extra/sampleCombine';
 
 function recordStream (streamInfo, time$) {
+  const seedEvents = [];
+  seedEvents.label = streamInfo.label;
+  seedEvents.options = {feature: streamInfo.feature || false};
+
   const recordedStream = streamInfo.stream
     .compose(sampleCombine(time$)).map(([ev, time]) => ({
       timestamp: time, value: ev
@@ -12,7 +16,7 @@ function recordStream (streamInfo, time$) {
       newEvents.options = {feature: streamInfo.feature || false};
 
       return newEvents;
-    }, []);
+    }, seedEvents);
 
   recordedStream.label = streamInfo.label;
 
