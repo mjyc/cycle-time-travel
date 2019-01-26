@@ -5678,7 +5678,7 @@ function intent(DOM) {
 
   var playingClick$ = DOM.select('.pause').events('click').fold(function (previous, _) {
     return !previous;
-  }, true).startWith(true);
+  }, false).startWith(false);
 
   var playing$ = _xstream2.default.combine(dragging$, playingClick$).map(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
@@ -5718,6 +5718,10 @@ var _sampleCombine2 = _interopRequireDefault(_sampleCombine);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function recordStream(streamInfo, time$) {
+  var seedEvents = [];
+  seedEvents.label = streamInfo.label;
+  seedEvents.options = { feature: streamInfo.feature || false };
+
   var recordedStream = streamInfo.stream.compose((0, _sampleCombine2.default)(time$)).map(function (_ref) {
     var _ref2 = _slicedToArray(_ref, 2),
         ev = _ref2[0],
@@ -5733,7 +5737,7 @@ function recordStream(streamInfo, time$) {
     newEvents.options = { feature: streamInfo.feature || false };
 
     return newEvents;
-  }, []);
+  }, seedEvents);
 
   recordedStream.label = streamInfo.label;
 
