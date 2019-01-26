@@ -23,8 +23,8 @@ export default function intent (DOM) {
   ).startWith(false);
 
   const playingClick$ = DOM.select('.pause').events('click')
-    .fold((previous, _) => !previous, true)
-    .startWith(true);
+    .fold((previous, _) => !previous, false)
+    .startWith(false);
 
   const playing$ = xs.combine(
     dragging$,
