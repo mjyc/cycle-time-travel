@@ -9,7 +9,9 @@
   "scripts": {
     "prebuild": "rimraf lib && mkdirp lib",
     "build": "babel src -d lib",
-    "browserify": "mkdirp dist && browserify src/index.js --standalone default -t babelify --outfile dist/index.js"
+    "prebrowserify": "rimraf dist && mkdirp dist",
+    "browserify": "browserify src/index.js --standalone default -t babelify --outfile dist/index.js",
+    "prepublishOnly": "npm run build && npm run browserify"
   },
   "repository": {
     "type": "git",
